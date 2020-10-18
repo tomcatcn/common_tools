@@ -76,14 +76,51 @@ class ListHelper():
         """
         根据条件，根据条件排序可迭代对象中的元素
         :param iterable_target: 可迭代对象
-        :param func_condition: 排序
+        :param func_condition: 排序条件
         :return: 生成器对象
         """
         for index in range(len(iterable_target)-1):
             for s in range(index+1,len(iterable_target)):
                 if func_condition(iterable_target[index]) > func_condition(iterable_target[s]):
                     iterable_target[index],iterable_target[s] = iterable_target[s],iterable_target[index]
-            #不需要return或者yiel，因为ierable指向的是列表，函数中操作列表，可以改变列表
+            #不需要return或者yiel，因为ierable指向的是可迭代对象，函数中操作可变数据，可以改变数据
 
+    @staticmethod
+    def min_one(iterable_target, func_condition):
+        """
+        根据条件，计算可迭代对象中最小的元素
+        :param iterable_target: 可迭代对象
+        :param func_condition: 最小条件
+        :return: 最小元素
+        """
+        min_item = iterable_target[0]
+        for item in iterable_target:
+            if func_condition(item) < func_condition(min_item):
+                min_item = item
+        return min_item
 
+    @staticmethod
+    def sort_high_to_low(iterable_target, func_condition):
+        """
+        根据条件，根据条件降序排序可迭代对象中的元素
+        :param iterable_target: 可迭代对象
+        :param func_condition: 排序条件
+        :return: 生成器对象
+        """
+        for index in range(len(iterable_target) - 1):
+            for s in range(index + 1, len(iterable_target)):
+                if func_condition(iterable_target[index]) < func_condition(iterable_target[s]):
+                    iterable_target[index], iterable_target[s] = iterable_target[s], iterable_target[index]
+            # 不需要return或者yiel，因为ierable指向的是列表，函数中操作列表，可以改变列表
 
+    @staticmethod
+    def remove(iterable_target, func_condition):
+        """
+        根据条件，删除可变可迭代对象中的元素
+        :param iterable_target: 可迭代对象
+        :param func_condition: 删除条件
+        :return: None
+        """
+        for item in iterable_target:
+            if func_condition(item):
+                iterable_target.remove(item)
