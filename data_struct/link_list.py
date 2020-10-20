@@ -15,8 +15,8 @@ class Node:
         #指向下一个节点
         self.next = next
 
-    # def __str__(self):
-    #     return "数据{}:next({})".format(self.val,self.next)
+    def __repr__(self):
+        return  '<Node:{},,{}>'.format(self.val,self.next)
 
 
 #单链表类
