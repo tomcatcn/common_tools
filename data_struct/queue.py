@@ -1,4 +1,4 @@
-from stack import LStack
+from data_struct.stack import LStack
 
 
 class QueueError(Exception):
@@ -21,12 +21,6 @@ class LQueue:
         # 标记队头和队尾，让他们指向同一个空节点对象
         self._head = self._rear = Node(None)
 
-    def init(self,iter):
-        # 初始化，只需要把队尾标记移动，队头不变即可
-        for i in iter:
-            node = Node(i)
-            self._rear.next = node
-            self._rear = node #队尾移动
 
     # 是否空队列
     def is_emtpy(self):
@@ -46,6 +40,7 @@ class LQueue:
         # 队尾标记，直接指向新节点即可
         node = Node(val)
         self._rear.next = node
+        self._rear = self._rear.next
 
     def show(self):
         while self._head.next is not None:
@@ -90,15 +85,18 @@ class StackQueue:
 
 if __name__ == '__main__':
     queue = LQueue()
-    queue.init(range(10))
-    print(queue.front())
-    print(queue.front())
-    print(queue.front())
-    print(queue.front())
+
+
+    queue.rear('ni')
+    queue.rear('ni')
+    queue.rear('ni')
+    queue.rear('ni')
+    queue.rear('ni')
+    queue.rear('ni')
     queue.rear('ni')
     print(queue.is_emtpy())
     for i in range(12):
-        queue.front()
+        print(queue.front())
 
 
 
