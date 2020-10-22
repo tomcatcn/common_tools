@@ -192,5 +192,6 @@ if __name__ == '__main__':
     link2.show()
     link1.extend(link2)
     link1.show()
+    print(dir(link1))
 
 
